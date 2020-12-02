@@ -25,4 +25,10 @@ describe('Suite de manipulação de Herois', () => {
                       
     assert.deepStrictEqual(actual, expectd);
   })
+  // it.only('deve remover um heroi por id', async () => {
+  it('deve remover um heroi por id', async () => {
+    const expectd = true;
+    const resultado = await database.remover(DEFAULT_ITEM_CADASTRAR.id);
+    assert.deepStrictEqual(resultado, expectd);
+  })
 })
