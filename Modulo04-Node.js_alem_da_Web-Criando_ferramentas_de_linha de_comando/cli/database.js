@@ -31,11 +31,11 @@ class Database {
   }
 
   async cadastrar(heroi) {
-    const dados = await this.obterDadosArquivo()
+    const dados = await this.obterDadosArquivo();
     const id = heroi.id <= 2 ? heroi.id : Date.now();
     const heroiComId = {
+      ...heroi,
       id,
-      ...heroi
     }
     const dadosFinal = [
       ...dados,
@@ -55,6 +55,24 @@ class Database {
 
     dados.splice(indice, 1);
     return await this.escreverArquivo(dados);
+  }
+
+  async atualizar(id, modificacoes) {
+    const dados = await this.obterDadosArquivo();
+    const indice = dados.findIndex(item => item.id === parseInt(id));
+    if(!~indice) throw Error('O herroi informado nao existe');
+    const atual = dados[indice];
+    const objetoAtualizar = {
+      ...atual,
+      ...modificacoes
+    }
+    // dados.splice(indice, 1);
+    // return await this.escreverArquivo([
+    //   ...dados,
+    //   objetoAtualizar
+    // ])
+    dados.splice(indice, 1, objetoAtualizar);
+    return await this.escreverArquivo([...dados]);
   }
 }
 
