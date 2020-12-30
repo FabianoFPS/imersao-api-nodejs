@@ -1,14 +1,14 @@
 class NotImplementedException extends Error {
   constructor() {
-    super("Not Implemented Exception");
+    super('Not Implemented Exception');
   }
 }
-
-class ICrud {
+//interface
+class IDb {
   create(item) {
     throw new NotImplementedException();
   }
-  read(query) {
+  read(item) {
     throw new NotImplementedException();
   }
   update(id, item) {
@@ -17,9 +17,9 @@ class ICrud {
   delete(id) {
     throw new NotImplementedException();
   }
-  isConnected() {
+  isConnected(id) {
     throw new NotImplementedException();
   }
 }
 
-module.exports = ICrud;
+module.exports = IDb;
