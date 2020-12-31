@@ -65,6 +65,9 @@ class MongoDB extends ICrud {
   async delete(id) {
     return await this._herois.deleteOne({ _id: id });
   }
+  async close() {
+    await this._driver.close();
+  }
 }
 
 module.exports = MongoDB;

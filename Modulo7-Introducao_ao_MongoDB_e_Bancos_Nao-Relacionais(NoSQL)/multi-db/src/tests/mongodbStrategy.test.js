@@ -25,6 +25,9 @@ describe('MongoDB Suite de testes', function () {
     await context.create(MOCK_HEROI_DEFAULT);
     MOCK_HEROI_ID = await context.create(MOCK_HEROI_ATUALIZAR);
   })
+  this.afterAll(async () => {
+    await context.close();
+  })
   it('verificar conexão', async () => {
     const expected = 'Conectado';
     const result = await context.isConnected();
